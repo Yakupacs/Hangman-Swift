@@ -68,9 +68,7 @@ class ViewControllerGame: UIViewController {
     var array = [String]()
     var sign : Bool = false
     
-    var animals = ["kedi", "köpek", "fil", "kaplumbağa", "yılan", "inek", "maymun", "koyun", "fare", "aslan", "kaplan", "iguana", "antilop", "fok", "penguen", "arı", "yengeç", "zebra", "zürafa", "çita"]
-    
-    var flowers = ["menekşe", "papatya", "gül", "ayçiçeği", "manolya", "mimoza", "lale", "zambak", "nilüfer", "sümbül", "kasımpatı", "nergis", "karanfil", "leylak", "şebboy"]
+    var flowers = ["açelya","akasya","aslanağzı","begonvil","begonya","biberiye","çarkıfelek","çiğdem","defne","devedikeni","eğreltiotu","erguvan","fesleğen","firuze","fulya","gelincik","gül","günebakan","hanımeli","ıhlamur","kadife","kaktüs","kamelya","kasımpatı","karanfil","krizantem","kuşkonmaz","lale","leylak","manolya","menekşe","meyan","mimoza","nane","nergis","nilüfer","orkide","öksekotu","papatya","reyhan","rezene","sardunya","şebboy","sarmaşık","sümbül","yabangülü","yasemin","yüksükotu","zambak"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +76,7 @@ class ViewControllerGame: UIViewController {
         questionLbl.isHidden = true
         killedLbl.isHidden = true
         scoreLbl.text = "YOUR SCORE: \(score)"
-        subjectLbl.text = "flowers"
+        subjectLbl.text = "FLOWERS"
         
         flowers.shuffle()
         answer = flowers[0]
@@ -93,7 +91,6 @@ class ViewControllerGame: UIViewController {
         
         str = ""
         count = 0
-        print(answer)
         i = answer.count
         check = 0
         while(i != 0){
@@ -104,6 +101,7 @@ class ViewControllerGame: UIViewController {
     }
     
     @IBAction func aLetter(_ sender: Any) {
+        aBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -135,8 +133,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         aBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func bLetter(_ sender: Any) {
+        bBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -168,8 +171,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         bBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func cLetter(_ sender: Any) {
+        cBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -202,8 +210,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         cBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func c_Letter(_ sender: Any) {
+        c_Btn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -235,8 +248,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         c_Btn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func dLetter(_ sender: Any) {
+        dBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -268,8 +286,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         dBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func eLetter(_ sender: Any) {
+        eBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -301,8 +324,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         eBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func fLetter(_ sender: Any) {
+        fBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -334,8 +362,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         fBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func gLetter(_ sender: Any) {
+        gBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -367,8 +400,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         gBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func g_Letter(_ sender: Any) {
+        g_Btn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -400,9 +438,14 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         g_Btn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
         
     }
     @IBAction func hLetter(_ sender: Any) {
+        hBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -434,8 +477,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         hBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func i_Letter(_ sender: Any) {
+        i_Btn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -467,8 +515,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         i_Btn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func iLetter(_ sender: Any) {
+        iBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -500,8 +553,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         iBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func jLetter(_ sender: Any) {
+        jBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -533,8 +591,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         jBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func kLetter(_ sender: Any) {
+        kBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -566,8 +629,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         kBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func lLetter(_ sender: Any) {
+        lBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -599,8 +667,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         lBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func mLetter(_ sender: Any) {
+        mBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -632,8 +705,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         mBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func nLetter(_ sender: Any) {
+        nBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -665,8 +743,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         nBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func oLetter(_ sender: Any) {
+        oBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -698,8 +781,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         oBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func o_Letter(_ sender: Any) {
+        o_Btn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -731,8 +819,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         o_Btn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func pLetter(_ sender: Any) {
+        pBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -764,8 +857,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         pBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func rLetter(_ sender: Any) {
+        rBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -797,8 +895,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         rBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func sLetter(_ sender: Any) {
+        sBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -830,9 +933,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         sBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func s_Letter(_ sender: Any) {
-        
+        s_Btn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -864,8 +971,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         s_Btn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func u_Letter(_ sender: Any) {
+        u_Btn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -897,8 +1009,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         u_Btn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func vLetter(_ sender: Any) {
+        vBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -930,8 +1047,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         vBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func yLetter(_ sender: Any) {
+        yBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -963,8 +1085,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         yBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func zLetter(_ sender: Any) {
+        zBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -996,8 +1123,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         zBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func uLetter(_ sender: Any) {
+        uBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -1029,8 +1161,13 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         uBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     @IBAction func tLetter(_ sender: Any) {
+        tBtn.isHidden = true
         let word = [Character](answer)
         count = word.count
         i = 0
@@ -1062,6 +1199,10 @@ class ViewControllerGame: UIViewController {
         str = ""
         scoreLbl.text = "YOUR SCORE: \(score)"
         tBtn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
     }
     func failFunc(){
         due -= 1
@@ -1200,6 +1341,35 @@ class ViewControllerGame: UIViewController {
         vBtn.isEnabled = true
         yBtn.isEnabled = true
         zBtn.isEnabled = true
+        aBtn.isHidden = false
+        bBtn.isHidden = false
+        cBtn.isHidden = false
+        c_Btn.isHidden = false
+        dBtn.isHidden = false
+        eBtn.isHidden = false
+        fBtn.isHidden = false
+        gBtn.isHidden = false
+        g_Btn.isHidden = false
+        hBtn.isHidden = false
+        i_Btn.isHidden = false
+        iBtn.isHidden = false
+        jBtn.isHidden = false
+        kBtn.isHidden = false
+        lBtn.isHidden = false
+        mBtn.isHidden = false
+        nBtn.isHidden = false
+        oBtn.isHidden = false
+        o_Btn.isHidden = false
+        pBtn.isHidden = false
+        rBtn.isHidden = false
+        sBtn.isHidden = false
+        s_Btn.isHidden = false
+        tBtn.isHidden = false
+        uBtn.isHidden = false
+        u_Btn.isHidden = false
+        vBtn.isHidden = false
+        yBtn.isHidden = false
+        zBtn.isHidden = false
         restartBtn.backgroundColor = .black
         line1Stick.textColor = .darkGray
         line2Stick.textColor = .darkGray
@@ -1215,7 +1385,11 @@ class ViewControllerGame: UIViewController {
         rightDownStick.textColor = .darkGray
     }
     func newWord(){
+        
+        questionLbl.isHidden = true
+        killedLbl.isHidden = true
         sign = false
+        
         aBtn.isEnabled = true
         bBtn.isEnabled = true
         cBtn.isEnabled = true
@@ -1245,16 +1419,48 @@ class ViewControllerGame: UIViewController {
         vBtn.isEnabled = true
         yBtn.isEnabled = true
         zBtn.isEnabled = true
+        
+        aBtn.isHidden = false
+        bBtn.isHidden = false
+        cBtn.isHidden = false
+        c_Btn.isHidden = false
+        dBtn.isHidden = false
+        eBtn.isHidden = false
+        fBtn.isHidden = false
+        gBtn.isHidden = false
+        g_Btn.isHidden = false
+        hBtn.isHidden = false
+        i_Btn.isHidden = false
+        iBtn.isHidden = false
+        jBtn.isHidden = false
+        kBtn.isHidden = false
+        lBtn.isHidden = false
+        mBtn.isHidden = false
+        nBtn.isHidden = false
+        oBtn.isHidden = false
+        o_Btn.isHidden = false
+        pBtn.isHidden = false
+        rBtn.isHidden = false
+        sBtn.isHidden = false
+        s_Btn.isHidden = false
+        tBtn.isHidden = false
+        uBtn.isHidden = false
+        u_Btn.isHidden = false
+        vBtn.isHidden = false
+        yBtn.isHidden = false
+        zBtn.isHidden = false
+
         str = ""
+        answer = ""
         count = 0
-        print(answer)
-        i = answer.count
         check = 0
-        while(i != 0){
-            array.append(" ")
-            i -= 1
-            check += 1
-        }
+        i = 0
+        array = [String]()
+        sign = false
+        questionLbl.isHidden = true
+        killedLbl.isHidden = true
+        scoreLbl.text = "YOUR SCORE: \(score)"
+        
         flowers.shuffle()
         answer = flowers[0]
         
@@ -1265,5 +1471,15 @@ class ViewControllerGame: UIViewController {
             count -= 1
         }
         lineLbl.text = str
+        
+        str = ""
+        count = 0
+        i = answer.count
+        check = 0
+        while(i != 0){
+            array.append(" ")
+            i -= 1
+            check += 1
+        }
     }
 }
