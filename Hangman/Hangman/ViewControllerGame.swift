@@ -13,6 +13,7 @@ class ViewControllerGame: UIViewController {
     @IBOutlet weak var questionLbl: UILabel!
     @IBOutlet weak var lineLbl: UILabel!
     @IBOutlet weak var scoreLbl: UILabel!
+    @IBOutlet weak var maxScoreLbl: UILabel!
     
     @IBOutlet weak var headStick: UILabel!
     @IBOutlet weak var leftUpStick: UILabel!
@@ -63,15 +64,19 @@ class ViewControllerGame: UIViewController {
     var str = ""
     var answer = ""
     var count = 0
-    var check = 0
     var i = 0
     var array = [String]()
     var sign : Bool = false
+    var maxScore = 0
     
     var flowers = ["açelya","akasya","aslanağzı","begonvil","begonya","biberiye","çarkıfelek","çiğdem","defne","devedikeni","eğreltiotu","erguvan","fesleğen","firuze","fulya","gelincik","gül","günebakan","hanımeli","ıhlamur","kadife","kaktüs","kamelya","kasımpatı","karanfil","krizantem","kuşkonmaz","lale","leylak","manolya","menekşe","meyan","mimoza","nane","nergis","nilüfer","orkide","öksekotu","papatya","reyhan","rezene","sardunya","şebboy","sarmaşık","sümbül","yabangülü","yasemin","yüksükotu","zambak"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let savedScore = UserDefaults.standard.object(forKey: "score")
+        if let getScore = savedScore as? String{
+            maxScoreLbl.text = "MAX SCORE: \(String(describing: getScore))"
+        }
         
         questionLbl.isHidden = true
         killedLbl.isHidden = true
@@ -92,11 +97,9 @@ class ViewControllerGame: UIViewController {
         str = ""
         count = 0
         i = answer.count
-        check = 0
         while(i != 0){
             array.append(" ")
             i -= 1
-            check += 1
         }
     }
     
@@ -1231,6 +1234,11 @@ class ViewControllerGame: UIViewController {
         case 0:
             rightDownStick.textColor = .white
         default:
+            if (score > maxScore){
+                maxScore = score
+                UserDefaults.standard.setValue(String(maxScore), forKey: "score")
+                maxScoreLbl.text = "MAX SCORE: \(maxScore)"
+            }
             line1Stick.textColor = .red
             line2Stick.textColor = .red
             line3Stick.textColor = .red
@@ -1282,7 +1290,6 @@ class ViewControllerGame: UIViewController {
         str = ""
         answer = ""
         count = 0
-        check = 0
         i = 0
         array = [String]()
         sign = false
@@ -1304,13 +1311,10 @@ class ViewControllerGame: UIViewController {
         
         str = ""
         count = 0
-        print(answer)
         i = answer.count
-        check = 0
         while(i != 0){
             array.append(" ")
             i -= 1
-            check += 1
         }
         aBtn.isEnabled = true
         bBtn.isEnabled = true
@@ -1453,7 +1457,6 @@ class ViewControllerGame: UIViewController {
         str = ""
         answer = ""
         count = 0
-        check = 0
         i = 0
         array = [String]()
         sign = false
@@ -1475,11 +1478,10 @@ class ViewControllerGame: UIViewController {
         str = ""
         count = 0
         i = answer.count
-        check = 0
         while(i != 0){
             array.append(" ")
             i -= 1
-            check += 1
         }
+        score += 5
     }
 }
