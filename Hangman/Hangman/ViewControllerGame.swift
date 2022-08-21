@@ -11,7 +11,6 @@ class ViewControllerGame: UIViewController {
 
     @IBOutlet weak var subjectLbl: UILabel!
     @IBOutlet weak var questionLbl: UILabel!
-    @IBOutlet weak var lineLbl: UILabel!
     @IBOutlet weak var scoreLbl: UILabel!
     @IBOutlet weak var maxScoreLbl: UILabel!
     
@@ -68,11 +67,21 @@ class ViewControllerGame: UIViewController {
     var array = [String]()
     var sign : Bool = false
     var maxScore = 0
+    var all = [[String]]()
     
     var flowers = ["açelya","akasya","aslanağzı","begonvil","begonya","biberiye","çarkıfelek","çiğdem","defne","devedikeni","eğreltiotu","erguvan","fesleğen","firuze","fulya","gelincik","gül","günebakan","hanımeli","ıhlamur","kadife","kaktüs","kamelya","kasımpatı","karanfil","krizantem","kuşkonmaz","lale","leylak","manolya","menekşe","meyan","mimoza","nane","nergis","nilüfer","orkide","öksekotu","papatya","reyhan","rezene","sardunya","şebboy","sarmaşık","sümbül","yabangülü","yasemin","yüksükotu","zambak"]
+    
+    var animals = ["ahtapot", "akbaba", "arı", "aslan", "at", "atmaca", "balina","baykuş", "bıldırcın", "ceylan", "çakal", "deve", "eşek", "engerek","fare", "fil", "fok", "gelincik", "geyik", "goril", "güvercin", "hamsi", "hindi", "horoz", "inek", "kanarya", "kaplan", "kanguru", "kaplumbağa", "karınca", "katır", "kaz", "keçi", "kedi", "kırlangıç", "koyun", "koala", "koyun", "köpek", "kuğu", "kunduz", "kumru", "kuskus", "kuzgun", "lama", "leopar", "levrek", "manda", "maymun", "mezgit","orangutan", "ornitorenk","öküz", "örümcek", "ördek","palamut", "porsuk", "salyangoz", "samur", "sansar", "serçe", "sincap", "sığır", "şahin", "tavşan", "tavuk", "tavuskuşu", "tilki", "timsah", "uskumru", "vaşak", "yılan", "yengeç", "zürafa", "zebra"]
+    
+    var countries = ["afganistan", "almanya", "amerika", "arjantin", "avustralya", "avusturya", "azerbaycan", "brezilya", "cezayir", "çin", "danimarka", "endonezya", "ermenistan", "fas", "fransa", "filistin", "gürcistan", "hindistan", "hollanda", "ırak", "iran", "irlanda", "ispanya", "israil", "isveç", "italya", "izlanda","japonya", "kolombiya", "kanada", "kosova", "küba", "lübnan"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        all.append(flowers)
+        all.append(animals)
+        all.append(countries)
+        
         let savedScore = UserDefaults.standard.object(forKey: "score")
         if let getScore = savedScore as? String{
             maxScoreLbl.text = "MAX SCORE: \(String(describing: getScore))"
@@ -81,10 +90,21 @@ class ViewControllerGame: UIViewController {
         questionLbl.isHidden = true
         killedLbl.isHidden = true
         scoreLbl.text = "YOUR SCORE: \(score)"
-        subjectLbl.text = "FLOWERS"
+
         
-        flowers.shuffle()
-        answer = flowers[0]
+        all.shuffle()
+        var liste = all[0]
+        if (liste[0] == "afganistan"){
+            subjectLbl.text = "COUNTRIES"
+        }
+        else if (liste[0] == "ahtapot"){
+            subjectLbl.text = "ANIMALS"
+        }
+        else if (liste[0] == "açelya"){
+            subjectLbl.text = "FLOWERS"
+        }
+        liste.shuffle()
+        answer = liste[0]
         
         questionLbl.text = answer
         count = answer.count
@@ -92,15 +112,24 @@ class ViewControllerGame: UIViewController {
             str = str + "-"
             count -= 1
         }
-        lineLbl.text = str
         
         str = ""
         count = 0
         i = answer.count
         while(i != 0){
-            array.append(" ")
+            array.append("_")
             i -= 1
         }
+        str = ""
+        i = 0
+        var countArray = array.count
+        while (countArray != 0){
+            str += "_" + " " + " "
+            countArray -= 1
+        }
+        questionLbl.text = str
+        str = ""
+        questionLbl.isHidden = false
     }
     
     @IBAction func aLetter(_ sender: Any) {
@@ -114,8 +143,8 @@ class ViewControllerGame: UIViewController {
                 score += 1
                 sign = true
             }
-            else if (array[i] == " "){
-                array[i] = "  "
+            else if (array[i] == "_"){
+                array[i] = "_"
             }
             i += 1
             count -= 1
@@ -1296,10 +1325,20 @@ class ViewControllerGame: UIViewController {
         questionLbl.isHidden = true
         killedLbl.isHidden = true
         scoreLbl.text = "YOUR SCORE: \(score)"
-        subjectLbl.text = "flowers"
         
-        flowers.shuffle()
-        answer = flowers[0]
+        all.shuffle()
+        var liste = all[0]
+        if (liste[0] == "afganistan"){
+            subjectLbl.text = "COUNTRIES"
+        }
+        else if (liste[0] == "ahtapot"){
+            subjectLbl.text = "ANIMALS"
+        }
+        else if (liste[0] == "açelya"){
+            subjectLbl.text = "FLOWERS"
+        }
+        liste.shuffle()
+        answer = liste[0]
         
         questionLbl.text = answer
         count = answer.count
@@ -1307,13 +1346,12 @@ class ViewControllerGame: UIViewController {
             str = str + "-"
             count -= 1
         }
-        lineLbl.text = str
         
         str = ""
         count = 0
         i = answer.count
         while(i != 0){
-            array.append(" ")
+            array.append("_")
             i -= 1
         }
         aBtn.isEnabled = true
@@ -1387,6 +1425,16 @@ class ViewControllerGame: UIViewController {
         leftDownStick.textColor = .darkGray
         rightUpStick.textColor = .darkGray
         rightDownStick.textColor = .darkGray
+        str = ""
+        i = 0
+        var countArray = array.count
+        while (countArray != 0){
+            str += "_" + " " + " "
+            countArray -= 1
+        }
+        questionLbl.text = str
+        str = ""
+        questionLbl.isHidden = false
     }
     func newWord(){
         
@@ -1464,8 +1512,19 @@ class ViewControllerGame: UIViewController {
         killedLbl.isHidden = true
         scoreLbl.text = "YOUR SCORE: \(score)"
         
-        flowers.shuffle()
-        answer = flowers[0]
+        all.shuffle()
+        var liste = all[0]
+        if (liste[0] == "afganistan"){
+            subjectLbl.text = "COUNTRIES"
+        }
+        else if (liste[0] == "ahtapot"){
+            subjectLbl.text = "ANIMALS"
+        }
+        else if (liste[0] == "açelya"){
+            subjectLbl.text = "FLOWERS"
+        }
+        liste.shuffle()
+        answer = liste[0]
         
         questionLbl.text = answer
         count = answer.count
@@ -1473,15 +1532,28 @@ class ViewControllerGame: UIViewController {
             str = str + "-"
             count -= 1
         }
-        lineLbl.text = str
+
         
         str = ""
         count = 0
         i = answer.count
         while(i != 0){
-            array.append(" ")
+            array.append("_")
             i -= 1
         }
         score += 5
+        str = ""
+        i = 0
+        var countArray = array.count
+        while (countArray != 0){
+            str += "_" + " " + " "
+            countArray -= 1
+        }
+        questionLbl.text = str
+        str = ""
+        questionLbl.isHidden = false
+    }
+    @IBAction func backFunc(_ sender: Any) {
+        performSegue(withIdentifier: "toBack", sender: nil)
     }
 }
