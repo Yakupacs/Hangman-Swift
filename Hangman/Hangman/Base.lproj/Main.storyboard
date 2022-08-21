@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Hangman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="intro" translatesAutoresizingMaskIntoConstraints="NO" id="MSN-ZG-vMr">
@@ -578,7 +578,7 @@
                         <outlet property="vBtn" destination="qmA-p0-6sC" id="Iva-Bh-Ikn"/>
                         <outlet property="yBtn" destination="TiB-FQ-NoH" id="THL-SK-Kqe"/>
                         <outlet property="zBtn" destination="jwR-Db-1jp" id="349-W8-UjO"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toBack" id="yuW-bF-4PT"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toBack" modalPresentationStyle="fullScreen" id="yuW-bF-4PT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tb8-Sh-id3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
