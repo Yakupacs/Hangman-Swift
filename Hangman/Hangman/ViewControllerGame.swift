@@ -57,6 +57,7 @@ class ViewControllerGame: UIViewController {
     @IBOutlet weak var yBtn: UIButton!
     @IBOutlet weak var zBtn: UIButton!
     @IBOutlet weak var restartBtn: UIButton!
+    @IBOutlet weak var userLbl: UILabel!
     
     var due = 11
     var score = 0
@@ -68,26 +69,41 @@ class ViewControllerGame: UIViewController {
     var sign : Bool = false
     var maxScore = 0
     var all = [[String]]()
+    var name : String = ""
+    
+    var savedScore : Int?
+    var savedName : String?
     
     var flowers = ["açelya","akasya","aslanağzı","begonvil","begonya","biberiye","çarkıfelek","çiğdem","defne","devedikeni","eğreltiotu","erguvan","fesleğen","firuze","fulya","gelincik","gül","günebakan","hanımeli","ıhlamur","kadife","kaktüs","kamelya","kasımpatı","karanfil","krizantem","kuşkonmaz","lale","leylak","manolya","menekşe","meyan","mimoza","nane","nergis","nilüfer","orkide","öksekotu","papatya","reyhan","rezene","sardunya","şebboy","sarmaşık","sümbül","yabangülü","yasemin","yüksükotu","zambak"]
     
     var animals = ["ahtapot", "akbaba", "arı", "aslan", "at", "atmaca", "balina","baykuş", "bıldırcın", "ceylan", "çakal", "deve", "eşek", "engerek","fare", "fil", "fok", "gelincik", "geyik", "goril", "güvercin", "hamsi", "hindi", "horoz", "inek", "kanarya", "kaplan", "kanguru", "kaplumbağa", "karınca", "katır", "kaz", "keçi", "kedi", "kırlangıç", "koyun", "koala", "koyun", "köpek", "kuğu", "kunduz", "kumru", "kuskus", "kuzgun", "lama", "leopar", "levrek", "manda", "maymun", "mezgit","orangutan", "ornitorenk","öküz", "örümcek", "ördek","palamut", "porsuk", "salyangoz", "samur", "sansar", "serçe", "sincap", "sığır", "şahin", "tavşan", "tavuk", "tavuskuşu", "tilki", "timsah", "uskumru", "vaşak", "yılan", "yengeç", "zürafa", "zebra"]
     
-    var countries = ["afganistan", "almanya", "amerika", "arjantin", "avustralya", "avusturya", "azerbaycan", "brezilya", "cezayir", "çin", "danimarka", "endonezya", "ermenistan", "fas", "fransa", "filistin", "gürcistan", "hindistan", "hollanda", "ırak", "iran", "irlanda", "ispanya", "israil", "isveç", "italya", "izlanda","japonya", "kolombiya", "kanada", "kosova", "küba", "lübnan"]
+    var countries = ["afganistan", "almanya", "amerika", "arjantin", "avustralya", "avusturya", "azerbaycan", "brezilya", "cezayir", "çin", "danimarka", "endonezya", "ermenistan", "fas", "fransa", "filistin", "gürcistan", "hindistan", "hollanda", "ırak", "iran", "irlanda", "ispanya", "israil", "isveç", "italya", "izlanda","japonya", "kolombiya", "kanada", "kosova", "küba", "lübnan", "türkmenistan", "tanzanya", "somali","sırbistan", "tacikistan", "tunus", "ukrayna", "yenizelanda", "yunanistan", "uganda","tayland","salvador", "polonya","romanya"]
+    
+    var sports = ["atletizm", "voleybol", "kürek", "yelken", "badminton", "triatlon", "basketbol", "okçuluk", "kano", "atıcılık", "masatenisi", "bisiklet", "binicilik", "masatenisi", "tekvando", "futbol", "cimnastik", "halter", "hokey","hentbol", "tenis", "susporları", "judo", "pentatlon"]
+    
+    var languages = ["afrikaanca", "almanca", "arapça", "arnavutça", "boşnakça", "bulgarca", "çince", "endonezce", "ermenice", "farsça", "felemenkçe", "filipince","fransızca", "hırvatça", "hintçe", "ibranice", "ingilizce", "irlandaca", "ispanyolca", "isveççe", "italyanca", "izlandaca", "japonca", "kazakça", "korece", "kürtçe", "latince","lehçe", "macarca", "moğolca", "norveççe", "özbekçe", "portekizce","rusça", "sırpça", "slovakça", "somalice", "tatarca", "türkçe", "ukraynaca", "yunanca"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // APPEND LISTS
         all.append(flowers)
         all.append(animals)
         all.append(countries)
+        all.append(sports)
+        all.append(languages)
         
-        let savedScore = UserDefaults.standard.object(forKey: "score")
-        if let getScore = savedScore as? String{
-            maxScoreLbl.text = "MAX SCORE: \(String(describing: getScore))"
+        // LOAD SCORE
+        savedName = UserDefaults.standard.string(forKey: "name")
+        savedScore = UserDefaults.standard.integer(forKey: "score")
+        if let getName = savedName as? String{
+            userLbl.text = "USER: \(getName)"
+        }
+        if let getScore = savedScore as? Int{
+            maxScoreLbl.text = "MAX SCORE: \(getScore)"
         }
         
-        questionLbl.isHidden = true
         killedLbl.isHidden = true
         
         all.shuffle()
@@ -107,7 +123,6 @@ class ViewControllerGame: UIViewController {
         }
         questionLbl.text = str
         str = ""
-        questionLbl.isHidden = false
     }
     
     @IBAction func aLetter(_ sender: Any) {
@@ -200,81 +215,60 @@ class ViewControllerGame: UIViewController {
     func failFunc(){
         due -= 1
         switch due {
-        case 10:
-            line1Stick.textColor = .white
-        case 9:
-            line2Stick.textColor = .white
-            line3Stick.textColor = .white
-        case 8:
-            line4Stick.textColor = .white
-        case 7:
-            line5Stick.textColor = .white
-        case 6:
-            line6Stick.textColor = .white
-        case 5:
-            headStick.textColor = .white
-        case 4:
-            centerStick.textColor = .white
-        case 3:
-            leftUpStick.textColor = .white
-        case 2:
-            rightUpStick.textColor = .white
-        case 1:
-            leftDownStick.textColor = .white
-        case 0:
-            rightDownStick.textColor = .white
-        default:
-            if (score > maxScore){
-                maxScore = score
-                UserDefaults.standard.setValue(String(maxScore), forKey: "score")
-                maxScoreLbl.text = "MAX SCORE: \(maxScore)"
-            }
-            line1Stick.textColor = .red
-            line2Stick.textColor = .red
-            line3Stick.textColor = .red
-            line4Stick.textColor = .red
-            line5Stick.textColor = .red
-            line6Stick.textColor = .red
-            headStick.textColor = .red
-            centerStick.textColor = .red
-            leftUpStick.textColor = .red
-            leftDownStick.textColor = .red
-            rightUpStick.textColor = .red
-            rightDownStick.textColor = .red
-            killedLbl.isHidden = false
-            aBtn.isEnabled = false
-            bBtn.isEnabled = false
-            cBtn.isEnabled = false
-            c_Btn.isEnabled = false
-            dBtn.isEnabled = false
-            eBtn.isEnabled = false
-            fBtn.isEnabled = false
-            gBtn.isEnabled = false
-            g_Btn.isEnabled = false
-            hBtn.isEnabled = false
-            iBtn.isEnabled = false
-            i_Btn.isEnabled = false
-            jBtn.isEnabled = false
-            kBtn.isEnabled = false
-            lBtn.isEnabled = false
-            mBtn.isEnabled = false
-            nBtn.isEnabled = false
-            oBtn.isEnabled = false
-            o_Btn.isEnabled = false
-            pBtn.isEnabled = false
-            rBtn.isEnabled = false
-            sBtn.isEnabled = false
-            s_Btn.isEnabled = false
-            tBtn.isEnabled = false
-            uBtn.isEnabled = false
-            u_Btn.isEnabled = false
-            vBtn.isEnabled = false
-            yBtn.isEnabled = false
-            zBtn.isEnabled = false
-            restartBtn.backgroundColor = .white
+            case 10:
+                line1Stick.textColor = .white
+            case 9:
+                line2Stick.textColor = .white
+                line3Stick.textColor = .white
+            case 8:
+                line4Stick.textColor = .white
+            case 7:
+                line5Stick.textColor = .white
+            case 6:
+                line6Stick.textColor = .white
+            case 5:
+                headStick.textColor = .white
+            case 4:
+                centerStick.textColor = .white
+            case 3:
+                leftUpStick.textColor = .white
+            case 2:
+                rightUpStick.textColor = .white
+            case 1:
+                leftDownStick.textColor = .white
+            case 0:
+                rightDownStick.textColor = .white
+            default:
+                if let getScore = savedScore as? Int{
+                    if getScore < score{
+                        UserDefaults.standard.set(score, forKey: "score")
+                        UserDefaults.standard.set(name, forKey: "name")
+                    }
+                }
+                allSticksRed()
+                killedLbl.isHidden = false
+                allButtonsNotEnabled()
+                restartBtn.backgroundColor = .white
+                
+                let answerAlert = UIAlertController.init(title: "Game Over!", message: "Answer: \(answer)\nYour Score: \(score)", preferredStyle: UIAlertController.Style.alert)
+                let restartAction = UIAlertAction.init(title: "Restart", style: .destructive, handler: restartFunc)
+                let cancelAction = UIAlertAction.init(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+                answerAlert.addAction(restartAction)
+                answerAlert.addAction(cancelAction)
+                self.present(answerAlert, animated: true, completion: nil)
         }
     }
     @IBAction func restartFunc(_ sender: Any) {
+        // LOAD SCORE
+        let savedName = UserDefaults.standard.string(forKey: "name")
+        let savedScore = UserDefaults.standard.integer(forKey: "score")
+        if let getName = savedName as? String{
+            userLbl.text = "USER: \(getName)"
+        }
+        if let getScore = savedScore as? Int{
+            maxScoreLbl.text = "MAX SCORE: \(getScore)"
+        }
+
         due = 11
         score = 0
         str = ""
@@ -285,7 +279,7 @@ class ViewControllerGame: UIViewController {
         sign = false
         questionLbl.isHidden = true
         killedLbl.isHidden = true
-        scoreLbl.text = "YOUR SCORE: \(score)"
+        scoreLbl.text = "SCORE: \(score)"
         
         all.shuffle()
         answer = shuffleElements(all: all)
@@ -296,77 +290,14 @@ class ViewControllerGame: UIViewController {
             array.append("_")
             i -= 1
         }
-        aBtn.isEnabled = true
-        bBtn.isEnabled = true
-        cBtn.isEnabled = true
-        c_Btn.isEnabled = true
-        dBtn.isEnabled = true
-        eBtn.isEnabled = true
-        fBtn.isEnabled = true
-        gBtn.isEnabled = true
-        g_Btn.isEnabled = true
-        hBtn.isEnabled = true
-        iBtn.isEnabled = true
-        i_Btn.isEnabled = true
-        jBtn.isEnabled = true
-        kBtn.isEnabled = true
-        lBtn.isEnabled = true
-        mBtn.isEnabled = true
-        nBtn.isEnabled = true
-        oBtn.isEnabled = true
-        o_Btn.isEnabled = true
-        pBtn.isEnabled = true
-        rBtn.isEnabled = true
-        sBtn.isEnabled = true
-        s_Btn.isEnabled = true
-        tBtn.isEnabled = true
-        uBtn.isEnabled = true
-        u_Btn.isEnabled = true
-        vBtn.isEnabled = true
-        yBtn.isEnabled = true
-        zBtn.isEnabled = true
-        aBtn.isHidden = false
-        bBtn.isHidden = false
-        cBtn.isHidden = false
-        c_Btn.isHidden = false
-        dBtn.isHidden = false
-        eBtn.isHidden = false
-        fBtn.isHidden = false
-        gBtn.isHidden = false
-        g_Btn.isHidden = false
-        hBtn.isHidden = false
-        i_Btn.isHidden = false
-        iBtn.isHidden = false
-        jBtn.isHidden = false
-        kBtn.isHidden = false
-        lBtn.isHidden = false
-        mBtn.isHidden = false
-        nBtn.isHidden = false
-        oBtn.isHidden = false
-        o_Btn.isHidden = false
-        pBtn.isHidden = false
-        rBtn.isHidden = false
-        sBtn.isHidden = false
-        s_Btn.isHidden = false
-        tBtn.isHidden = false
-        uBtn.isHidden = false
-        u_Btn.isHidden = false
-        vBtn.isHidden = false
-        yBtn.isHidden = false
-        zBtn.isHidden = false
+        
+        allButtonsEnabled()
+        allButtonsNotHidden()
+        
         restartBtn.backgroundColor = .black
-        line1Stick.textColor = .darkGray
-        line2Stick.textColor = .darkGray
-        line3Stick.textColor = .darkGray
-        line4Stick.textColor = .darkGray
-        line5Stick.textColor = .darkGray
-        line6Stick.textColor = .darkGray
-        headStick.textColor = .darkGray
-        centerStick.textColor = .darkGray
-        leftUpStick.textColor = .darkGray
-        leftDownStick.textColor = .darkGray
-        rightUpStick.textColor = .darkGray
-        rightDownStick.textColor = .darkGray
+        
+        allSticksDarkGray()
+        
         str = ""
         i = 0
         var countArray = array.count
@@ -383,66 +314,9 @@ class ViewControllerGame: UIViewController {
         questionLbl.isHidden = true
         killedLbl.isHidden = true
         sign = false
-        
-        aBtn.isEnabled = true
-        bBtn.isEnabled = true
-        cBtn.isEnabled = true
-        c_Btn.isEnabled = true
-        dBtn.isEnabled = true
-        eBtn.isEnabled = true
-        fBtn.isEnabled = true
-        gBtn.isEnabled = true
-        g_Btn.isEnabled = true
-        hBtn.isEnabled = true
-        iBtn.isEnabled = true
-        i_Btn.isEnabled = true
-        jBtn.isEnabled = true
-        kBtn.isEnabled = true
-        lBtn.isEnabled = true
-        mBtn.isEnabled = true
-        nBtn.isEnabled = true
-        oBtn.isEnabled = true
-        o_Btn.isEnabled = true
-        pBtn.isEnabled = true
-        rBtn.isEnabled = true
-        sBtn.isEnabled = true
-        s_Btn.isEnabled = true
-        tBtn.isEnabled = true
-        uBtn.isEnabled = true
-        u_Btn.isEnabled = true
-        vBtn.isEnabled = true
-        yBtn.isEnabled = true
-        zBtn.isEnabled = true
-        
-        aBtn.isHidden = false
-        bBtn.isHidden = false
-        cBtn.isHidden = false
-        c_Btn.isHidden = false
-        dBtn.isHidden = false
-        eBtn.isHidden = false
-        fBtn.isHidden = false
-        gBtn.isHidden = false
-        g_Btn.isHidden = false
-        hBtn.isHidden = false
-        i_Btn.isHidden = false
-        iBtn.isHidden = false
-        jBtn.isHidden = false
-        kBtn.isHidden = false
-        lBtn.isHidden = false
-        mBtn.isHidden = false
-        nBtn.isHidden = false
-        oBtn.isHidden = false
-        o_Btn.isHidden = false
-        pBtn.isHidden = false
-        rBtn.isHidden = false
-        sBtn.isHidden = false
-        s_Btn.isHidden = false
-        tBtn.isHidden = false
-        uBtn.isHidden = false
-        u_Btn.isHidden = false
-        vBtn.isHidden = false
-        yBtn.isHidden = false
-        zBtn.isHidden = false
+
+        allButtonsEnabled()
+        allButtonsNotHidden()
 
         str = ""
         answer = ""
@@ -452,7 +326,7 @@ class ViewControllerGame: UIViewController {
         sign = false
         questionLbl.isHidden = true
         killedLbl.isHidden = true
-        scoreLbl.text = "YOUR SCORE: \(score)"
+        scoreLbl.text = "SCORE: \(score)"
         
         all.shuffle()
         answer = shuffleElements(all: all)
@@ -484,14 +358,21 @@ class ViewControllerGame: UIViewController {
     func shuffleElements(all: [[String]]) -> String{
         var liste = all[0]
         if (liste[0] == "afganistan"){
-            subjectLbl.text = "COUNTRIES"
+            subjectLbl.text = "A  COUNTRY"
         }
         else if (liste[0] == "ahtapot"){
-            subjectLbl.text = "ANIMALS"
+            subjectLbl.text = "A  ANIMAL"
         }
         else if (liste[0] == "açelya"){
-            subjectLbl.text = "FLOWERS"
+            subjectLbl.text = "A  FLOWER"
         }
+        else if (liste[0] == "atletizm"){
+            subjectLbl.text = "A  SPORT"
+        }
+        else if (liste[0] == "afrikaanca"){
+            subjectLbl.text = "A  LANGUAGE"
+        }
+        liste.shuffle()
         liste.shuffle()
         answer = liste[0]
         return answer
@@ -529,12 +410,138 @@ class ViewControllerGame: UIViewController {
         questionLbl.text = str
         questionLbl.isHidden = false
         str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
+        scoreLbl.text = "SCORE: \(score)"
         btn.isEnabled = false
         let convert = array.joined(separator: "")
         if (convert == answer){
             newWord()
         }
+    }
+    
+    func allSticksDarkGray(){
+        line1Stick.textColor = .darkGray
+        line2Stick.textColor = .darkGray
+        line3Stick.textColor = .darkGray
+        line4Stick.textColor = .darkGray
+        line5Stick.textColor = .darkGray
+        line6Stick.textColor = .darkGray
+        headStick.textColor = .darkGray
+        centerStick.textColor = .darkGray
+        leftUpStick.textColor = .darkGray
+        leftDownStick.textColor = .darkGray
+        rightUpStick.textColor = .darkGray
+        rightDownStick.textColor = .darkGray
+    }
+    
+    func allSticksRed(){
+        line1Stick.textColor = .red
+        line2Stick.textColor = .red
+        line3Stick.textColor = .red
+        line4Stick.textColor = .red
+        line5Stick.textColor = .red
+        line6Stick.textColor = .red
+        headStick.textColor = .red
+        centerStick.textColor = .red
+        leftUpStick.textColor = .red
+        leftDownStick.textColor = .red
+        rightUpStick.textColor = .red
+        rightDownStick.textColor = .red
+    }
+    
+    func allButtonsEnabled(){
+        aBtn.isEnabled = true
+        bBtn.isEnabled = true
+        cBtn.isEnabled = true
+        c_Btn.isEnabled = true
+        dBtn.isEnabled = true
+        eBtn.isEnabled = true
+        fBtn.isEnabled = true
+        gBtn.isEnabled = true
+        g_Btn.isEnabled = true
+        hBtn.isEnabled = true
+        iBtn.isEnabled = true
+        i_Btn.isEnabled = true
+        jBtn.isEnabled = true
+        kBtn.isEnabled = true
+        lBtn.isEnabled = true
+        mBtn.isEnabled = true
+        nBtn.isEnabled = true
+        oBtn.isEnabled = true
+        o_Btn.isEnabled = true
+        pBtn.isEnabled = true
+        rBtn.isEnabled = true
+        sBtn.isEnabled = true
+        s_Btn.isEnabled = true
+        tBtn.isEnabled = true
+        uBtn.isEnabled = true
+        u_Btn.isEnabled = true
+        vBtn.isEnabled = true
+        yBtn.isEnabled = true
+        zBtn.isEnabled = true
+    }
+    
+    func allButtonsNotHidden(){
+        aBtn.isHidden = false
+        bBtn.isHidden = false
+        cBtn.isHidden = false
+        c_Btn.isHidden = false
+        dBtn.isHidden = false
+        eBtn.isHidden = false
+        fBtn.isHidden = false
+        gBtn.isHidden = false
+        g_Btn.isHidden = false
+        hBtn.isHidden = false
+        i_Btn.isHidden = false
+        iBtn.isHidden = false
+        jBtn.isHidden = false
+        kBtn.isHidden = false
+        lBtn.isHidden = false
+        mBtn.isHidden = false
+        nBtn.isHidden = false
+        oBtn.isHidden = false
+        o_Btn.isHidden = false
+        pBtn.isHidden = false
+        rBtn.isHidden = false
+        sBtn.isHidden = false
+        s_Btn.isHidden = false
+        tBtn.isHidden = false
+        uBtn.isHidden = false
+        u_Btn.isHidden = false
+        vBtn.isHidden = false
+        yBtn.isHidden = false
+        zBtn.isHidden = false
+    }
+    
+    func allButtonsNotEnabled(){
+        aBtn.isEnabled = false
+        bBtn.isEnabled = false
+        cBtn.isEnabled = false
+        c_Btn.isEnabled = false
+        dBtn.isEnabled = false
+        eBtn.isEnabled = false
+        fBtn.isEnabled = false
+        gBtn.isEnabled = false
+        g_Btn.isEnabled = false
+        hBtn.isEnabled = false
+        iBtn.isEnabled = false
+        i_Btn.isEnabled = false
+        jBtn.isEnabled = false
+        kBtn.isEnabled = false
+        lBtn.isEnabled = false
+        mBtn.isEnabled = false
+        nBtn.isEnabled = false
+        oBtn.isEnabled = false
+        o_Btn.isEnabled = false
+        pBtn.isEnabled = false
+        rBtn.isEnabled = false
+        sBtn.isEnabled = false
+        s_Btn.isEnabled = false
+        tBtn.isEnabled = false
+        uBtn.isEnabled = false
+        u_Btn.isEnabled = false
+        vBtn.isEnabled = false
+        yBtn.isEnabled = false
+        zBtn.isEnabled = false
     }
 }
 
