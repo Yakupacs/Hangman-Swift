@@ -7,4 +7,4 @@ Hangman is a popular word guessing game where the player attempts to build a mis
 
 
 # Video
-<img width="300px" src="https://user-images.githubusercontent.com/73075252/185788420-b031788f-f242-41a3-9e03-b0ccdf43adfb.gif">
+<img width="300px" src="https://user-images.githubusercontent.com/73075252/186208985-4447854e-affd-4e4a-a174-01526b073ee8.gif">
