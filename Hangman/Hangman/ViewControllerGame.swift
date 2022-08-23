@@ -89,38 +89,16 @@ class ViewControllerGame: UIViewController {
         
         questionLbl.isHidden = true
         killedLbl.isHidden = true
-        scoreLbl.text = "YOUR SCORE: \(score)"
-
         
         all.shuffle()
-        var liste = all[0]
-        if (liste[0] == "afganistan"){
-            subjectLbl.text = "COUNTRIES"
-        }
-        else if (liste[0] == "ahtapot"){
-            subjectLbl.text = "ANIMALS"
-        }
-        else if (liste[0] == "açelya"){
-            subjectLbl.text = "FLOWERS"
-        }
-        liste.shuffle()
-        answer = liste[0]
-        
+        answer = shuffleElements(all: all)
         questionLbl.text = answer
-        count = answer.count
-        while (count > 0){
-            str = str + "-"
-            count -= 1
-        }
         
-        str = ""
-        count = 0
         i = answer.count
         while(i != 0){
             array.append("_")
             i -= 1
         }
-        str = ""
         i = 0
         var countArray = array.count
         while (countArray != 0){
@@ -133,1108 +111,91 @@ class ViewControllerGame: UIViewController {
     }
     
     @IBAction func aLetter(_ sender: Any) {
-        aBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "a"){
-                array[i] = "a"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == "_"){
-                array[i] = "_"
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        aBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: aBtn, char: "a")
     }
     @IBAction func bLetter(_ sender: Any) {
-        bBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "b"){
-                array[i] = "b"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        bBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: bBtn, char: "b")
     }
     @IBAction func cLetter(_ sender: Any) {
-        cBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "c"){
-                array[i] = "c"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        cBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: cBtn, char: "c")
     }
     @IBAction func c_Letter(_ sender: Any) {
-        c_Btn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "ç"){
-                array[i] = "ç"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        c_Btn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: c_Btn, char: "ç")
     }
     @IBAction func dLetter(_ sender: Any) {
-        dBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "d"){
-                array[i] = "d"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        dBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: dBtn, char: "d")
     }
     @IBAction func eLetter(_ sender: Any) {
-        eBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "e"){
-                array[i] = "e"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        eBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: eBtn, char: "e")
     }
     @IBAction func fLetter(_ sender: Any) {
-        fBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "f"){
-                array[i] = "f"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        fBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: fBtn, char: "f")
     }
     @IBAction func gLetter(_ sender: Any) {
-        gBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "g"){
-                array[i] = "g"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        gBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: gBtn, char: "g")
     }
     @IBAction func g_Letter(_ sender: Any) {
-        g_Btn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "ğ"){
-                array[i] = "ğ"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        g_Btn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
-        
+        letterControl(btn: g_Btn, char: "ğ")
     }
     @IBAction func hLetter(_ sender: Any) {
-        hBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "h"){
-                array[i] = "h"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        hBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: hBtn, char: "h")
     }
     @IBAction func i_Letter(_ sender: Any) {
-        i_Btn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "ı"){
-                array[i] = "ı"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        i_Btn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: i_Btn, char: "ı")
     }
     @IBAction func iLetter(_ sender: Any) {
-        iBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "i"){
-                array[i] = "i"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        iBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: iBtn, char: "i")
     }
     @IBAction func jLetter(_ sender: Any) {
-        jBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "j"){
-                array[i] = "j"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        jBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: jBtn, char: "j")
     }
     @IBAction func kLetter(_ sender: Any) {
-        kBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "k"){
-                array[i] = "k"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        kBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: kBtn, char: "k")
     }
     @IBAction func lLetter(_ sender: Any) {
-        lBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "l"){
-                array[i] = "l"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        lBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: lBtn, char: "l")
     }
     @IBAction func mLetter(_ sender: Any) {
-        mBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "m"){
-                array[i] = "m"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        mBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: mBtn, char: "m")
     }
     @IBAction func nLetter(_ sender: Any) {
-        nBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "n"){
-                array[i] = "n"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        nBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: nBtn, char: "n")
     }
     @IBAction func oLetter(_ sender: Any) {
-        oBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "o"){
-                array[i] = "o"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        oBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: oBtn, char: "o")
     }
     @IBAction func o_Letter(_ sender: Any) {
-        o_Btn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "ö"){
-                array[i] = "ö"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        o_Btn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: o_Btn, char: "ö")
     }
     @IBAction func pLetter(_ sender: Any) {
-        pBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "p"){
-                array[i] = "p"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        pBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: pBtn, char: "p")
     }
     @IBAction func rLetter(_ sender: Any) {
-        rBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "r"){
-                array[i] = "r"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        rBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: rBtn, char: "r")
     }
     @IBAction func sLetter(_ sender: Any) {
-        sBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "s"){
-                array[i] = "s"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        sBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: sBtn, char: "s")
     }
     @IBAction func s_Letter(_ sender: Any) {
-        s_Btn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "ş"){
-                array[i] = "ş"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        s_Btn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: s_Btn, char: "ş")
     }
     @IBAction func u_Letter(_ sender: Any) {
-        u_Btn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "ü"){
-                array[i] = "ü"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        u_Btn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: u_Btn, char: "ü")
     }
     @IBAction func vLetter(_ sender: Any) {
-        vBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "v"){
-                array[i] = "v"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        vBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: vBtn, char: "v")
     }
     @IBAction func yLetter(_ sender: Any) {
-        yBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "y"){
-                array[i] = "y"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        yBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: yBtn, char: "y")
     }
     @IBAction func zLetter(_ sender: Any) {
-        zBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "z"){
-                array[i] = "z"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        zBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: zBtn, char: "z")
     }
     @IBAction func uLetter(_ sender: Any) {
-        uBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "u"){
-                array[i] = "u"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        uBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: uBtn, char: "u")
     }
     @IBAction func tLetter(_ sender: Any) {
-        tBtn.isHidden = true
-        let word = [Character](answer)
-        count = word.count
-        i = 0
-        while (count != 0){
-            if (word[i] == "t"){
-                array[i] = "t"
-                score += 1
-                sign = true
-            }
-            else if (array[i] == " "){
-                array[i] = "  "
-            }
-            i += 1
-            count -= 1
-        }
-        for a in array{
-            str += a + " " + " "
-        }
-        i = 0
-        count = word.count
-        if (sign == false){
-            failFunc()
-        }
-        else{
-            sign = false
-        }
-        questionLbl.text = str
-        questionLbl.isHidden = false
-        str = ""
-        scoreLbl.text = "YOUR SCORE: \(score)"
-        tBtn.isEnabled = false
-        let convert = array.joined(separator: "")
-        if (convert == answer){
-            newWord()
-        }
+        letterControl(btn: tBtn, char: "t")
     }
     func failFunc(){
         due -= 1
@@ -1327,28 +288,9 @@ class ViewControllerGame: UIViewController {
         scoreLbl.text = "YOUR SCORE: \(score)"
         
         all.shuffle()
-        var liste = all[0]
-        if (liste[0] == "afganistan"){
-            subjectLbl.text = "COUNTRIES"
-        }
-        else if (liste[0] == "ahtapot"){
-            subjectLbl.text = "ANIMALS"
-        }
-        else if (liste[0] == "açelya"){
-            subjectLbl.text = "FLOWERS"
-        }
-        liste.shuffle()
-        answer = liste[0]
-        
+        answer = shuffleElements(all: all)
         questionLbl.text = answer
-        count = answer.count
-        while (count > 0){
-            str = str + "-"
-            count -= 1
-        }
-        
-        str = ""
-        count = 0
+
         i = answer.count
         while(i != 0){
             array.append("_")
@@ -1513,26 +455,8 @@ class ViewControllerGame: UIViewController {
         scoreLbl.text = "YOUR SCORE: \(score)"
         
         all.shuffle()
-        var liste = all[0]
-        if (liste[0] == "afganistan"){
-            subjectLbl.text = "COUNTRIES"
-        }
-        else if (liste[0] == "ahtapot"){
-            subjectLbl.text = "ANIMALS"
-        }
-        else if (liste[0] == "açelya"){
-            subjectLbl.text = "FLOWERS"
-        }
-        liste.shuffle()
-        answer = liste[0]
-        
+        answer = shuffleElements(all: all)
         questionLbl.text = answer
-        count = answer.count
-        while (count > 0){
-            str = str + "-"
-            count -= 1
-        }
-
         
         str = ""
         count = 0
@@ -1556,4 +480,61 @@ class ViewControllerGame: UIViewController {
     @IBAction func backFunc(_ sender: Any) {
         performSegue(withIdentifier: "toBack", sender: nil)
     }
+    
+    func shuffleElements(all: [[String]]) -> String{
+        var liste = all[0]
+        if (liste[0] == "afganistan"){
+            subjectLbl.text = "COUNTRIES"
+        }
+        else if (liste[0] == "ahtapot"){
+            subjectLbl.text = "ANIMALS"
+        }
+        else if (liste[0] == "açelya"){
+            subjectLbl.text = "FLOWERS"
+        }
+        liste.shuffle()
+        answer = liste[0]
+        return answer
+    }
+    
+    func letterControl(btn: UIButton, char: String)
+    {
+        btn.isHidden = true
+        let word = [Character](self.answer)
+        count = word.count
+        i = 0
+        while (count != 0){
+            if (String(word[i]) == char){
+                array[i] = char
+                score += 1
+                sign = true
+            }
+            else if (array[i] == " "){
+                array[i] = "  "
+            }
+            i += 1
+            count -= 1
+        }
+        for a in array{
+            str += a + " " + " "
+        }
+        i = 0
+        count = word.count
+        if (sign == false){
+            failFunc()
+        }
+        else{
+            sign = false
+        }
+        questionLbl.text = str
+        questionLbl.isHidden = false
+        str = ""
+        scoreLbl.text = "YOUR SCORE: \(score)"
+        btn.isEnabled = false
+        let convert = array.joined(separator: "")
+        if (convert == answer){
+            newWord()
+        }
+    }
 }
+
